@@ -105,6 +105,7 @@ sub update_version {
         my $contents = slurp($file);
         $contents =~ s/(\$VERSION\s*=\s*([\'\"]))(.+?)\2/$1$newver$2/
             or die "Failed to replace version.  Where is \$VERSION line?\n";
+        $contents =~ s/(Version\s*)(.+?)/$1$newver/;
 
         write_file($file, $contents);
         return 1;
