@@ -29,7 +29,7 @@ sub run {
 
     in_dir($self->{dir}, sub {
         system("git", "add", $self->{file}) and die "git add failed";
-        system("git", "commit", "-m", "auto-adding file using shipit") and die "git commit failed";
+        system("git", "commit", "-m", "auto-adding $self->{file} using shipit") and die "git commit failed";
         system("git", "push") and die "git push failed";
     });
 }
