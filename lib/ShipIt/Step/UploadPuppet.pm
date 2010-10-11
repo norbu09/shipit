@@ -28,6 +28,7 @@ sub run {
         die "file copy of $distfile to $self->{dir} failed: $!\n";
 
     in_dir($self->{dir}, sub {
+        system("git", "pull") and die "git pull failed"; # make sure we have a current repo
         system("git", "add", $self->{file}) and die "git add failed";
         system("git", "commit", "-m", "auto-adding $self->{file} using shipit") and die "git commit failed";
         system("git", "push") and die "git push failed";
